@@ -110,7 +110,17 @@ class Circle(Polygon):
     面积pi*r^2
     点的位置可以由半径的sin，cos函数获得。
     """
-    pass
+    def __init__(self, start_point, r, n):
+        self.start_point = start_point
+        self.r = r
+        self.n = n
+        self.points = [start_point + Point(0, r)]
+        for i in range(n):
+            # TODO 将圆的360度分为n份，取每一份的点
+            pass
+
+    def area(self):
+        return math.pi * self.r * self.r
 
 
 class Example(wx.Frame):
