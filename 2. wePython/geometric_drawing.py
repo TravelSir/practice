@@ -91,9 +91,8 @@ class TriAngle(Polygon):
         self.first_point = first_point
         self.second_point = second_point
         self.third_point = third_point
-        for i in range(2):
-            assert not (first_point[i] == second_point[i] and first_point[i] == third_point[i]), \
-                'Three points in one line'
+        assert (not (first_point.x == second_point.x and first_point.x == third_point.x) or not
+                (first_point.y == second_point.y and first_point.y == third_point.y)), 'Three points in one line'
         Polygon.__init__(self, [first_point, second_point, third_point], **kwargs)
 
     def area(self):
@@ -110,14 +109,24 @@ class Circle(Polygon):
     面积pi*r^2
     点的位置可以由半径的sin，cos函数获得。
     """
-    def __init__(self, start_point, r, n):
+    def __init__(self, start_point, r, n, **kwargs):
         self.start_point = start_point
         self.r = r
         self.n = n
         self.points = [start_point + Point(0, r)]
-        for i in range(n):
-            # TODO 将圆的360度分为n份，取每一份的点
-            pass
+        for i in range(1, n):
+            # 将圆的360度分为n份，取每一份的点
+            angle = 360 * i / n
+            rad = self.angle_to_radian(angle)
+            x = math.sin(rad) * r
+            y = math.cos(rad) * r
+            point = start_point + Point(x, y)
+            self.points.append(point)
+        Polygon.__init__(self, self.points, **kwargs)
+
+    @staticmethod
+    def angle_to_radian(angle):
+        return math.pi * angle / 180
 
     def area(self):
         return math.pi * self.r * self.r
@@ -145,9 +154,15 @@ if __name__ == '__main__':
 
     prepare_draws = []
 
-    start_p = Point(50, 60)
-    a = RectAngle(start_p, 100, 80, color='#ff0000')
+    start_p = Point(100, 100)
+    a = RectAngle(start_p, 80, 80, color='#ff0000')
     prepare_draws.append(a)
+
+    b = TriAngle(Point(200, 200), Point(300, 300), Point(250, 350))
+    prepare_draws.append(b)
+
+    c = Circle(start_p, 80, 500)
+    prepare_draws.append(c)
 
     for shape in prepare_draws:
         print(shape.area())
