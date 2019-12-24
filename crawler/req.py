@@ -82,15 +82,6 @@ def get_index_interns():
         print(name, salary, tags, city, work_day, month, img, company, industry, scale)
 
 
-def intern_search():
-    url = ''
-    response = requests.get(url)
-
-    soup = BeautifulSoup(response.text, features='lxml')
-    interns = soup.find_all('div', {'class': 'intern-wrap intern-item'})
-    print(interns)
-
-
 if __name__ == '__main__':
     # get_sxs_index()
     # get_index_interns()

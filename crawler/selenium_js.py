@@ -51,8 +51,7 @@ def my_deliver(browser):
     browser.find_element_by_xpath('/html/body/div[1]/div[2]/div[2]/div/div[2]/div[1]/div[1]')
     with open('test3.html', 'w+') as f:
         f.write(browser.page_source)
-
-    # bs4 直接解析browser.page_source
+    # bs4 直接解析browser.page_source...
 
 
 if __name__ == '__main__':
