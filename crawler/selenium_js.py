@@ -6,7 +6,7 @@ cookies = {}
 
 def init_browser():
 
-    path = "/Users/tsir/study/code/crawler/chromedriver"  # 注意这个路径需要时可执行路径（chmod 777 dir or 755 dir）
+    path = "/Users/tsir/study/code/practice/crawler/chromedriver"  # 注意这个路径需要时可执行路径（chmod 777 dir or 755 dir）
 
     options = webdriver.ChromeOptions()
 

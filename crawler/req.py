@@ -25,6 +25,7 @@ def login_sxs():
     }
 
     resp = req.post(login_url, headers=headers, data=param)
+    # resp = req.post(login_url, headers=headers, data=param, proxies={'http': '0.0.0.0:8888'})  # ip代理
     print(resp.text)
     return req.cookies
 
